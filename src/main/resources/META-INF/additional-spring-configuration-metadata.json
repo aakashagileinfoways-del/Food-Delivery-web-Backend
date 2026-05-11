@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "mailtrap.token",
+  "type": "java.lang.String",
+  "description": "A description for 'mailtrap.token'"
+}]}
