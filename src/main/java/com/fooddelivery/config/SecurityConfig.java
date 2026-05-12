@@ -12,7 +12,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 @Configuration
 public class SecurityConfig {
-
+ 
     private final JwtUtil jwtUtil;
     private final CustomAccessDeniedHandler accessDeniedHandler;
 

@@ -27,12 +27,10 @@ public class KafkaConsumerConfig {
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        config.put(JsonDeserializer.TRUSTED_PACKAGES, "com.fooddelivery.kafka.event");
+        config.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, true);
 
-        return new DefaultKafkaConsumerFactory<>(
-                config,
-                new StringDeserializer(),
-                new JsonDeserializer<>(Object.class, false)
-        );
+        return new DefaultKafkaConsumerFactory<>(config);
     }
 
     @Bean

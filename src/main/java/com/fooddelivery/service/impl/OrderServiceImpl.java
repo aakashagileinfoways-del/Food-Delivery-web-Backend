@@ -31,6 +31,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.fooddelivery.kafka.event.OrderEvent;
 import com.fooddelivery.kafka.event.PaymentEvent;
+import com.fooddelivery.kafka.event.UserEvent;
 import com.fooddelivery.kafka.producer.KafkaEventPublisher;
 
 @Service
@@ -137,6 +138,18 @@ public class OrderServiceImpl implements OrderService {
         order.setTransactionId(txnId);
         // 7. Save
         orderRepository.save(order);
+
+
+
+        kafkaEventPublisher.publishUser(
+            new UserEvent(
+                    order.getCustomer().getId(),
+                    order.getCustomer().getEmail(),
+                    order.getCustomer().getName()));
+    System.out.println("User details published with ID: " + order.getCustomer().getId());
+
+
+
 
         kafkaEventPublisher.publishOrder(
                 new OrderEvent(
